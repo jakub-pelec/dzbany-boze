@@ -11,7 +11,7 @@ import openSocket from 'socket.io-client';
 import Socket from './components/Socket/Socket';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
-const socket = openSocket('localhost:5000');
+const socket = openSocket('https://dzbany-server.herokuapp.com/80');
 
 ReactDOM.render(
     <Provider store={store} >

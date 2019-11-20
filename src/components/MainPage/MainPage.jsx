@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Message from '../Message/Message';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { saveNewMessage } from '../../actions/actions';
+import { saveNewMessageToStore, saveNewMessageToDatabse } from '../../actions/actions';
 import './MainPage.css';
 
-const MainPage = ({ messagesFromStore, socket, saveNewMessage: saveNewMessageProps }) => {
+const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps }) => {
     const input = document.querySelector('#message');
     const [message, setMessage] = useState('');
 
+    console.log('invoked');
     /**
      * Listens to event from server and saves received message to store.
      */
@@ -53,8 +54,10 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessage: saveNewMessagePro
         event.preventDefault();
         if (isMessageNotEmpty()) {
             const { id } = socket;
-            saveNewMessageProps({ message, id });
-            socket.emit('new-message-from-client', { message, id })
+            const data = { message, id };
+            //saveNewMessageToDatabse(data);
+            saveNewMessageProps(data);
+            socket.emit('new-message-from-client', data)
             clearMessage();
         }
     };
@@ -64,7 +67,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessage: saveNewMessagePro
             <h1>Chat</h1>
             <div id='conversation'>
                 {messagesFromStore.map((messageFromHook, index) => (
-                    <Message body={messageFromHook} key={index} />
+                    <Message body={messageFromHook} key={index} socket={socket} />
                 ))}
             </div>
             <div className='input-container'>
@@ -117,5 +120,5 @@ MainPage.propTypes = {
 
 export default connect(
     mapStateToProps,
-    { saveNewMessage }
+    { saveNewMessageToStore }
 )(MainPage);

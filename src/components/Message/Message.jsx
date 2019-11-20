@@ -1,9 +1,12 @@
 import React from 'react';
 import './Message.css';
 
-const Message = ({ body }) => {
+const Message = ({ body, socket }) => {
+    const styleX = body.id === socket.id ? 'own' : '';
     return (
-        <div className='message'>{`${body.id}: ${body.message}`}</div>
+        <div className='message-wrapper'>
+            <div className={`message ${styleX}`}>{`${body.id}: ${body.message}`}</div>
+        </div>
     )
 };
 

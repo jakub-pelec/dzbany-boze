@@ -1,5 +1,18 @@
 .message {
-    height: 50px;
-    width: auto;
-    background-color: yellow;
+    height: auto;
+    width: 60%;
+    margin: 15px 10px 0 10px;
+    padding: 10px;
+    border: 1px solid #1c9aff;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.message.own {
+    display: block;
+    position: relative;
+    left: 0;
+    background-color: #1c9aff;
+    color: white;
 }

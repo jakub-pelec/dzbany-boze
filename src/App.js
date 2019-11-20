@@ -1,9 +1,9 @@
 import React from 'react';
 import MainPage from './components/MainPage/MainPage';
 
-function App() {
+function App({ socket }) {
   return (
-    <MainPage />
+    <MainPage socket={socket} />
   );
 }
 

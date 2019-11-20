@@ -1,6 +1,22 @@
+* {
+    font-family: 'Rubik', 'sans-serif';
+}
+
+.main-page {
+    text-align: center;
+}
+
 #conversation {
-    width: 500px;
+    display: inline-block;
+    width: 75%;
     height: 500px;
-    background-color: red;
+    background-color: #edf7ff;
+    border: 1px solid #8cccff;
+    border-radius: 10px;
     overflow: auto;
+}
+
+.input-container {
+    margin-top: -2px;
+    width: 100%;
 }

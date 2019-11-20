@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Message from '../Message/Message';
 import { connect } from 'react-redux';
+import { TextField, Button } from '@material-ui/core';
+import { saveNewMessage } from '../../actions/actions';
 import './MainPage.css';
-import { sendMessage } from '../Socket/Socket';
 
-const MainPage = ({ messagesFromStore }) => {
+const MainPage = ({ messagesFromStore, socket, saveNewMessage: saveNewMessageProps }) => {
     const input = document.querySelector('#message');
-    const [messages, setMessages] = useState(messagesFromStore);
     const [message, setMessage] = useState('');
 
+    /**
+     * Listens to event from server and saves received message to store.
+     */
     useEffect(() => {
-        setMessages(messagesFromStore);
-    }, [messagesFromStore])
+        socket.on('new-message-from-server', (data) => {
+            saveNewMessageProps(data);
+        });
+    }, [socket, saveNewMessageProps]);
 
     /**
      * Checks if the message is empty.
@@ -46,23 +52,56 @@ const MainPage = ({ messagesFromStore }) => {
     const handleClick = (event) => {
         event.preventDefault();
         if (isMessageNotEmpty()) {
-            setMessages([...messages, message]);
-            sendMessage(message);
+            const { id } = socket;
+            saveNewMessageProps({ message, id });
+            socket.emit('new-message-from-client', { message, id })
             clearMessage();
         }
     };
 
     return (
-        <>
-            <h1>DZBANY BOZE OFFICIAL CHAT</h1>
+        <div className='main-page'>
+            <h1>Chat</h1>
             <div id='conversation'>
-                {  messages.map((message, index) => (
-                    <Message body={message} key={index} />
+                {messagesFromStore.map((messageFromHook, index) => (
+                    <Message body={messageFromHook} key={index} />
                 ))}
             </div>
-            <input type='text' name='message' id='message' autoFocus={true} value={message} onChange={(event) => handleChange(event)}/>
-            <button name='send' id='send-message' onClick={(event) => handleClick(event)}>Send message</button>
-        </>
+            <div className='input-container'>
+                <TextField
+                    style={{
+                        width: '55%',
+                        backgroundColor: 'white',
+                        borderRadius: 'none',
+                        overflow: 'hidden',
+                        marginTop: '-2px',
+                    }}
+                    variant='outlined'
+                    color='primary'
+                    name='message'
+                    id='message'
+                    autoFocus
+                    value={message}
+                    onChange={(event) => handleChange(event)}
+                    placeholder='Start typing...'
+                />
+                <Button
+                    style={{
+                        height: '57px',
+                        marginTop: '-2px',
+                        backgroundColor: 'white',
+                        borderRadius: 'none'
+                    }}
+                    variant='outlined'
+                    color='primary'
+                    name='send'
+                    id='send-message'
+                    onClick={(event) => handleClick(event)}
+                >
+                    Send message
+                </Button>
+            </div>
+        </div>
     );
 }
 
@@ -70,7 +109,13 @@ const mapStateToProps = state => ({
     messagesFromStore: state.messageReducer.messages
 })
 
+MainPage.propTypes = {
+    messagesFromStore: PropTypes.array,
+    socket: PropTypes.object,
+    saveNewMessage: PropTypes.func
+}
+
 export default connect(
     mapStateToProps,
-    null
+    { saveNewMessage }
 )(MainPage);

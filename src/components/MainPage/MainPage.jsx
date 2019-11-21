@@ -69,6 +69,12 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
         }
     };
 
+    const handleEnter = (event) => {
+        if (event.keyCode === 13) {
+            handleClick(event);
+        }
+    }
+
     return (
         <div className='main-page'>
             <Header text={'Chat'} />
@@ -95,6 +101,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                     value={message}
                     onChange={(event) => handleChange(event)}
                     placeholder='Start typing...'
+                    onKeyDown={(event => handleEnter(event))}
                 />
                 <Button
                     style={{

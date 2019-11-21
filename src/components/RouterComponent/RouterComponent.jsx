@@ -12,10 +12,10 @@ const RouterComponent = ({ isAuthenticated }) => {
     return (
         <Router>
             <Switch>
-                {isAuthenticated ?
-                    <Route path='*' component={() => <App socket={socket} />} />
-                    :
-                    <Route path='*' component={LoginPage} />
+                {/* {isAuthenticated ? */}
+                <Route path='*' component={() => <App socket={socket} />} />
+                {/* :
+                    <Route path='*' component={LoginPage} /> */}
                 }
             </Switch>
         </Router>

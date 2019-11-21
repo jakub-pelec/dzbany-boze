@@ -1,13 +1,10 @@
 import { saveNewMessageActionCreator, authenticateUserActionCreator } from './actionCreators';
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/storage';
 import firebaseInit from '../firebase/firebaseInit';
-const usernameAuth = 'username';
-const passwordAuth = 'password';
 
 firebaseInit();
 const messagesPath = 'dzbany/messages/messages';
-
 export const firestore = firebase.firestore();
 export const saveNewMessageToStore = data => async dispatch => {
     dispatch(saveNewMessageActionCreator(data))
@@ -22,8 +19,15 @@ export const saveNewMessageToDatabse = async data => {
         });
 }
 
-export const authenticateUser = data => dispatch => {
-    const { username, password } = data;
-    const correctCredentials = username === usernameAuth && password === passwordAuth;
-    dispatch(authenticateUserActionCreator(correctCredentials));
+export const authenticateUser = (email, password) => dispatch => {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(response => {
+            if (!response.error) {
+                dispatch(authenticateUserActionCreator(true))
+            }
+        })
+        .catch(error => {
+            const { code } = error;
+            dispatch(authenticateUserActionCreator(code));
+        });
 };

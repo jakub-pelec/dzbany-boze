@@ -17,18 +17,16 @@
     margin-top: 10%;
 }
 
-.username-container {
-    display: inline-block;
-}
-
-.password-container {
-    display: inline-block;
-}
-
 .input-container {
     margin-bottom: 4%;
+    width: 100%;
 }
 
 .button-container {
     margin-bottom: 10%;
+}
+
+.error-message {
+    color: red;
+    font-size: 25px;
 }

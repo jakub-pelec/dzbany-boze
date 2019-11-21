@@ -12,11 +12,36 @@ export const saveNewMessageActionCreator = payload => {
 };
 
 export const authenticateUserActionCreator = payload => {
-    return payload ? {
-        type: CORRECT_CREDENTIALS,
-        payload
-    } : {
-            type: INCORRECT_CREDENTIALS,
-            payload
-        }
+    switch (payload) {
+        case 'auth/user-not-found':
+            return {
+                type: INCORRECT_CREDENTIALS,
+                payload: false,
+                errorMessage: 'User not found'
+            }
+        case 'auth/wrong-password':
+            return {
+                type: INCORRECT_CREDENTIALS,
+                payload: false,
+                errorMessage: 'Incorrect password'
+            }
+        case 'auth/too-many-requests':
+            return {
+                type: INCORRECT_CREDENTIALS,
+                payload: false,
+                errorMessage: 'Too many attempts! Chill for a while'
+            }
+        case true:
+            return {
+                type: CORRECT_CREDENTIALS,
+                payload,
+                errorMessage: null
+            }
+        default:
+            return {
+                type: INCORRECT_CREDENTIALS,
+                payload: false,
+                errorMessage: 'Oops! Something went wrong!'
+            }
+    }
 };

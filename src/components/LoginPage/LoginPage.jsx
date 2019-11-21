@@ -3,16 +3,17 @@ import Header from '../Header/Header';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
 import { authenticateUser } from '../../actions/actions';
+import firebaseAuth from '../../firebase/firebaseAuth';
 import './LoginPage.css';
 
-const LoginPage = ({ authenticateUser: authenticateUserProps }) => {
-    const [username, setUsername] = useState('');
+const LoginPage = ({ authenticateUser: authenticateUserProps, errorMessage }) => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const handleChange = (event) => {
         const { name, value } = event.target;
         switch (name) {
-            case 'username':
-                setUsername(value);
+            case 'email':
+                setEmail(value);
                 break;
             case 'password':
                 setPassword(value);
@@ -21,8 +22,14 @@ const LoginPage = ({ authenticateUser: authenticateUserProps }) => {
                 break;
         }
     };
-    const handleClick = () => {
-        authenticateUserProps({ username, password });
+    const handleClick = (type) => {
+        if (password && email) {
+            if (type === 'register') {
+                firebaseAuth(email, password);
+            } else {
+                authenticateUserProps(email, password);
+            }
+        }
     };
     return (
         <div className='login-page'>
@@ -30,39 +37,59 @@ const LoginPage = ({ authenticateUser: authenticateUserProps }) => {
                 <Header text={'Login Page'} />
             </div>
             <div className='input-container'>
-                <div className='username-container'>
+                <span className='email-container'>
                     <TextField
+                        style={{
+                            width: '30%'
+                        }}
                         variant='outlined'
                         color='primary'
-                        placeholder='username'
-                        name='username'
+                        placeholder='email'
+                        name='email'
+                        type='email'
                         onChange={(event) => handleChange(event)}
                     />
-                </div>
-                <div className='password-container'>
+                </span>
+                <span className='password-container'>
                     <TextField
+                        style={{
+                            width: '30%'
+                        }}
                         variant='outlined'
                         color='primary'
                         placeholder='password'
                         name='password'
+                        type='password'
                         onChange={(event) => handleChange(event)}
                     />
-                </div>
+                </span>
             </div>
             <div className='button-container'>
                 <Button
                     variant='outlined'
                     color='primary'
-                    onClick={handleClick}
+                    onClick={() => handleClick('login')}
                 >
                     Login
                 </Button>
+                <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => handleClick('register')}
+                >
+                    Register
+                </Button>
             </div>
+            {errorMessage && <div className='error-message'>{errorMessage}</div>}
         </div>
     )
 };
 
+const mapStateToProps = state => ({
+    errorMessage: state.authReducer.errorMessage
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     { authenticateUser }
 )(LoginPage);

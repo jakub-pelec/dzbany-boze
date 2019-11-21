@@ -1,7 +1,8 @@
 import { CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS } from '../actions/types';
 
 const INITIAL_STATE = {
-    isAuthenticated: false
+    isAuthenticated: false,
+    errorMessage: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,12 +10,14 @@ export default (state = INITIAL_STATE, action) => {
         case CORRECT_CREDENTIALS:
             return {
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: true,
+                errorMessage: null
             }
         case INCORRECT_CREDENTIALS:
             return {
                 ...state,
-                isAuthenticated: false
+                isAuthenticated: false,
+                errorMessage: action.errorMessage
             }
         default:
             return state

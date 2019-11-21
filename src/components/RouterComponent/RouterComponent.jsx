@@ -6,16 +6,16 @@ import openSocket from 'socket.io-client';
 import PropTypes from 'prop-types';
 import App from '../../App';
 
-const socket = openSocket('localhost:5000');
+const socket = openSocket('https://dzbany-server.herokuapp.com/');
 
 const RouterComponent = ({ isAuthenticated }) => {
     return (
         <Router>
             <Switch>
-                {/* {isAuthenticated ? */}
-                <Route path='*' component={() => <App socket={socket} />} />
-                {/* :
-                    <Route path='*' component={LoginPage} /> */}
+                {isAuthenticated ?
+                    <Route path='*' component={() => <App socket={socket} />} />
+                    :
+                    <Route path='*' component={LoginPage} />
                 }
             </Switch>
         </Router>

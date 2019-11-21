@@ -1,6 +1,11 @@
-import { saveNewMessageActionCreator, authenticateUserActionCreator } from './actionCreators';
+import {
+    saveNewMessageActionCreator,
+    authenticateUserActionCreator,
+    showProppperRegistrationInfoActionCreator
+} from './actionCreators';
 import firebase from 'firebase';
 import 'firebase/storage';
+import 'firebase/auth';
 import firebaseInit from '../firebase/firebaseInit';
 
 firebaseInit();
@@ -31,3 +36,7 @@ export const authenticateUser = (email, password) => dispatch => {
             dispatch(authenticateUserActionCreator(code));
         });
 };
+
+export const showInformationAboutRegister = payload => dispatch => {
+    dispatch(showProppperRegistrationInfoActionCreator(payload));
+}

@@ -2,33 +2,57 @@ import React, { useState } from 'react';
 import Header from '../Header/Header';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { authenticateUser } from '../../actions/actions';
+import { authenticateUser, showInformationAboutRegister } from '../../actions/actions';
 import firebaseAuth from '../../firebase/firebaseAuth';
 import './LoginPage.css';
 
-const LoginPage = ({ authenticateUser: authenticateUserProps, errorMessage }) => {
+const LoginPage = ({
+    authenticateUser: authenticateUserProps,
+    errorMessage, showInformationAboutRegister: showInformationAboutRegisterProps,
+    registerMessage
+}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emptyFields, setEmptyFields] = useState(false);
+
+    /**
+     * Handle user input.
+     * @param {event} event - html5 event 
+     */
     const handleChange = (event) => {
         const { name, value } = event.target;
         switch (name) {
             case 'email':
                 setEmail(value);
+                if (emptyFields) {
+                    setEmptyFields(false);
+                }
                 break;
             case 'password':
                 setPassword(value);
+                if (emptyFields) {
+                    setEmptyFields(false);
+                }
                 break;
             default:
                 break;
         }
     };
+
+    /**
+     * Handles login and registration.
+     * @param {string} type - determines if user wants to register or login. 
+     */
     const handleClick = (type) => {
         if (password && email) {
             if (type === 'register') {
                 firebaseAuth(email, password);
+                showInformationAboutRegisterProps(true);
             } else {
                 authenticateUserProps(email, password);
             }
+        } else {
+            setEmptyFields(true);
         }
     };
     return (
@@ -81,15 +105,18 @@ const LoginPage = ({ authenticateUser: authenticateUserProps, errorMessage }) =>
                 </Button>
             </div>
             {errorMessage && <div className='error-message'>{errorMessage}</div>}
+            {registerMessage && <div className='error-message'>Registered succesfully</div>}
+            {emptyFields && <div className='error-message'>Register first!</div>}
         </div>
     )
 };
 
 const mapStateToProps = state => ({
-    errorMessage: state.authReducer.errorMessage
+    errorMessage: state.authReducer.errorMessage,
+    registerMessage: state.authReducer.userRegisteredMessage
 });
 
 export default connect(
     mapStateToProps,
-    { authenticateUser }
+    { authenticateUser, showInformationAboutRegister }
 )(LoginPage);

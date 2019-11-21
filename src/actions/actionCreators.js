@@ -1,4 +1,4 @@
-import { NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS } from './types';
+import { NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS, USER_REGISTERED } from './types';
 
 /**
  * Saves new message object to store.
@@ -12,6 +12,7 @@ export const saveNewMessageActionCreator = payload => {
 };
 
 export const authenticateUserActionCreator = payload => {
+    console.log(payload);
     switch (payload) {
         case 'auth/user-not-found':
             return {
@@ -45,3 +46,10 @@ export const authenticateUserActionCreator = payload => {
             }
     }
 };
+
+export const showProppperRegistrationInfoActionCreator = payload => {
+    return {
+        type: USER_REGISTERED,
+        payload
+    }
+}

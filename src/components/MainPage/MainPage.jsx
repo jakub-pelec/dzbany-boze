@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Message from '../Message/Message';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { saveNewMessageToStore, saveNewMessageToDatabse } from '../../actions/actions';
+import { saveNewMessageToStore, /*saveNewMessageToDatabse*/ } from '../../actions/actions';
+import Header from '../Header/Header';
+import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
 
 const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps }) => {
     const input = document.querySelector('#message');
     const [message, setMessage] = useState('');
-
-    console.log('invoked');
     /**
      * Listens to event from server and saves received message to store.
      */
@@ -19,6 +18,14 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
             saveNewMessageProps(data);
         });
     }, [socket, saveNewMessageProps]);
+
+    /**
+     * Handles scrolling to bottom when messages extend outside div.
+     */
+    useEffect(() => {
+        const conversationEnd = document.querySelector('#end-of-conversation');
+        conversationEnd.scrollIntoView({ behavior: 'smooth' });
+    }, [messagesFromStore]);
 
     /**
      * Checks if the message is empty.
@@ -64,11 +71,12 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
 
     return (
         <div className='main-page'>
-            <h1>Chat</h1>
+            <Header text={'Chat'} />
             <div id='conversation'>
-                {messagesFromStore.map((messageFromHook, index) => (
-                    <Message body={messageFromHook} key={index} socket={socket} />
-                ))}
+                <MessagesList messages={messagesFromStore} socket={socket} />
+                <div className='message-container'>
+                    <div id='end-of-conversation'></div>
+                </div>
             </div>
             <div className='input-container'>
                 <TextField

@@ -1,4 +1,4 @@
-import { NEW_MESSAGE } from './types';
+import { NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS } from './types';
 
 /**
  * Saves new message object to store.
@@ -9,4 +9,14 @@ export const saveNewMessageActionCreator = payload => {
         type: NEW_MESSAGE,
         payload
     }
+};
+
+export const authenticateUserActionCreator = payload => {
+    return payload ? {
+        type: CORRECT_CREDENTIALS,
+        payload
+    } : {
+            type: INCORRECT_CREDENTIALS,
+            payload
+        }
 };

@@ -16,7 +16,18 @@
     overflow: auto;
 }
 
+#end-of-conversation {
+    position: relative;
+    width: 100%;
+}
+
 .input-container {
     margin-top: -2px;
+    width: 100%;
+}
+
+.message-container {
+    position: relative;
+    display: inline-block;
     width: 100%;
 }

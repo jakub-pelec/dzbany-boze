@@ -1,7 +1,9 @@
-import { saveNewMessageActionCreator } from './actionCreators';
+import { saveNewMessageActionCreator, authenticateUserActionCreator } from './actionCreators';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseInit from '../firebase/firebaseInit';
+const usernameAuth = 'username';
+const passwordAuth = 'password';
 
 firebaseInit();
 const messagesPath = 'dzbany/messages/messages';
@@ -19,3 +21,9 @@ export const saveNewMessageToDatabse = async data => {
             throw new Error(`Error saving to database: ${error}`);
         });
 }
+
+export const authenticateUser = data => dispatch => {
+    const { username, password } = data;
+    const correctCredentials = username === usernameAuth && password === passwordAuth;
+    dispatch(authenticateUserActionCreator(correctCredentials));
+};

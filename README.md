@@ -5,6 +5,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 username: username
 password: password
 
+## Running:
+
+This project is splitted into two: frontend and backend. This is a frontend part. It will work independently, as the server is already deployed to heroku, but if you want to get this to work locally, you need to run server locally aswell.
+
+ - Download both projects
+ - Switch url in RouterComponent to `localhost:5000`
+ - Run `npm install` on both, and then `npm start` in frontend app, and `node index.js` in server side.
+
+
 ## Available Scripts
 
 In the project directory, you can run:

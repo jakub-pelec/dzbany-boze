@@ -12,9 +12,9 @@
     width: 55%;
     height: 500px;
     background-color: #232323;
-    border-radius: 10px;
-    border-right: rgb(54, 54, 54) 1px solid;
-    border-left:rgb(54,54,54) 1px solid;
+    border-radius: 9px;
+    border-right: rgb(54, 54, 54) 4px solid;
+    border-left:rgb(54,54,54) 4px solid;
     overflow: auto;
 }
 

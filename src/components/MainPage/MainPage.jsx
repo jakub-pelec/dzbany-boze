@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TextField, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { saveNewMessageToStore, /*saveNewMessageToDatabse*/ } from '../../actions/actions';
 import Header from '../Header/Header';
 import MessagesList from '../MessagesList/MessagesList';
@@ -77,7 +77,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
 
     return (
         <div className='main-page'>
-            <Header text={'Chat'} />
+            <Header text={'Have fun!'} />
             <div id='conversation'>
                 <MessagesList messages={messagesFromStore} socket={socket} />
                 <div className='message-container'>
@@ -85,25 +85,40 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                 </div>
             </div>
             <div className='input-container'>
-                <TextField
+                <TextField 
                     style={{
-                        width: '55%',
-                        backgroundColor: 'white',
-                        borderRadius: 'none',
+                        width: '54%',
                         overflow: 'hidden',
-                        marginTop: '-2px',
+                        padding:'4px',
+                        marginTop:'-11px',
+                        backgroundColor:'#252525',
+                    
                     }}
-                    variant='outlined'
-                    color='primary'
+                    variant='filled'
+                    label='Napisz wiadomość'
+                    multiline
+                    rowsMax='4'
+                    color='secondary'
                     name='message'
                     id='message'
                     autoFocus
                     value={message}
                     onChange={(event) => handleChange(event)}
-                    placeholder='Start typing...'
+                    placeholder='Bez Wyzywania!'
                     onKeyDown={(event => handleEnter(event))}
+                    margin='normal'
+                    InputProps = {{
+                        style: {
+                            color:'white',
+                        },
+                    }}
+                    InputLabelProps = {{
+                        style: {
+                            color:'white',
+                        },
+                    }}
                 />
-                <Button
+                {/* <Button
                     style={{
                         height: '57px',
                         marginTop: '-2px',
@@ -117,7 +132,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                     onClick={(event) => handleClick(event)}
                 >
                     Send message
-                </Button>
+                </Button> */}
             </div>
         </div>
     );

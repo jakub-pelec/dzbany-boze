@@ -2,6 +2,7 @@
     min-height: 10%;
     height: auto;
     width: 100%;
+    /* border-bottom: #cee6fa dotted 4px; */
     
 }
 .justify-content-wrapper {
@@ -17,37 +18,51 @@
 
 .message-wrapper {
     justify-content: flex-start;
-    /* background-color: chartreuse; */
-    border-bottom: rgb(170, 11, 11) dotted 3px;
-    border-left: rgb(170, 11, 11) dashed 3px;
     max-width: 70%;
     width: fit-content;
     margin-left:1%;
-    /* background-color: wheat; */
+    border-bottom: #cae3f7 dotted 5px;
+    
+    border-radius: 50px;
 }
 
 .message {
+    font-size:16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* margin-left: 1%; */
     word-wrap: break-word;
+    text-align: left;
+    margin-left:3px;
+    padding:6px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+
+.message.own {
+    margin-right: 3px;
+    padding-top:3px;
+    color:black;
     text-align: right;
-    padding-right:3px;
-    padding-bottom:3px;
 }
 
 .message-id {
-    background-color: tomato;
-    position:sticky;
-    top:0;
+    color:white;
+    background-color: #05386b;
+    border-radius: 20px;
     font-size:10px;
+    padding:3px;
+    margin-bottom:1px;
 }
 
 .message-wrapper.own {
- justify-content: flex-end;
- margin-right:1%;
- border-bottom: rgb(34, 34, 180) solid 4px;
+    justify-content: flex-end;
+    margin-right:1%;
+    border-bottom: #e3e2df dotted 5px;
+    
 
 }
 
 .message-id.own {
-    background-color: teal;
+    background-color: #F64C72;
 }

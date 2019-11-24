@@ -109,12 +109,14 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                     margin='normal'
                     InputProps = {{
                         style: {
+                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif'",
                             color:'white',
                         },
                     }}
                     InputLabelProps = {{
                         style: {
                             color:'white',
+                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
                         },
                     }}
                 />

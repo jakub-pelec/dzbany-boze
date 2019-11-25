@@ -65,11 +65,7 @@ const MainPage = ({
         event.preventDefault();
         if (isMessageNotEmpty()) {
             const { id } = socket;
-            const data = {
- message,
-id,
-nickname
-};
+            const data = { message, id, nickname };
             // SaveNewMessageToDatabse(data);
             saveNewMessageProps(data);
             socket.emit('new-message-from-client', data);
@@ -117,17 +113,17 @@ nickname
             onKeyDown={((event) => handleEnter(event))}
             margin="normal"
             InputProps={{
-                        style: {
-                            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
-                            color: 'white',
-                        },
-                    }}
+                style: {
+                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
+                    color: 'white',
+                },
+            }}
             InputLabelProps={{
-                        style: {
-                            color: 'white',
-                            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
-                        },
-                    }}
+                style: {
+                    color: 'white',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
+                },
+            }}
           />
         </div>
         </div>

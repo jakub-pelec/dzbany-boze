@@ -9,14 +9,15 @@ import Header from '../textVariant/Header';
 
 const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps }) => {
     const minNicknameLength = 6;
+    const maxNicknameLength = 15;
     const [nickname, setNickname] = useState('');
     const [error, setError] = useState(false);
     const handleChange = (event) => {
         const { value } = event.target;
-        setNickname(value);
+        setNickname(value.trim());
     };
     const handleClick = () => {
-      if (nickname.length >= minNicknameLength) {
+      if (nickname.length >= minNicknameLength && nickname.length <= maxNicknameLength) {
         const { email } = firebase.auth().currentUser;
         changeNicknameInDb(email, nickname);
         saveNicknameToStoreProps(nickname);
@@ -50,7 +51,7 @@ return (
     >
                 Save nickname
     </Button>
-    { error && <div>Nickname must be atleast 6 characters long!</div>}
+    { error && <div>Nickname must be between 6 and 15 characters long!</div>}
   </div>
     );
 };

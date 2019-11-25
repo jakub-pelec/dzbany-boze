@@ -78,50 +78,54 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
 
     return (
         <div className='main-page'>
-            <Header text={'Have fun!'} />
-            <div id='conversation'>
-                <MessagesList messages={messagesFromStore} socket={socket} />
-                <div className='message-container'>
-                    <div id='end-of-conversation'></div>
+            <Header id='welcome-text' text={'Have fun!'} />
+            <div id="conversation-container">
+                <div id='conversation'>
+                    <MessagesList messages={messagesFromStore} socket={socket} />
+                    <div className='message-container'>
+                        <div id='end-of-conversation'></div>
+                    </div>
                 </div>
-            </div>
-            <div className='input-container'>
-                <TextField 
-                    style={{
-                        width: '30%',
-                        overflow: 'hidden',
-                        padding:'4px',
-                        marginTop:'-11px',
-                        backgroundColor:'#252525',
-                    
-                    }}
-                    variant='filled'
-                    label='Napisz wiadomość'
-                    multiline
-                    rowsMax='4'
-                    color='secondary'
-                    name='message'
-                    id='message'
-                    autoFocus
-                    value={message}
-                    onChange={(event) => handleChange(event)}
-                    placeholder='Bez Wyzywania!'
-                    onKeyDown={(event => handleEnter(event))}
-                    margin='normal'
-                    InputProps = {{
-                        style: {
-                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif'",
-                            color:'white',
-                        },
-                    }}
-                    InputLabelProps = {{
-                        style: {
-                            color:'white',
-                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-                        },
-                    }}
-                />
-                {/* <Button
+                <div className='input-container'>
+                        <TextField 
+                            style={{
+                                width:'100%',
+                                overflow: 'hidden',
+                                padding:'4px',
+                                marginTop:'-12px',
+                                backgroundColor:'#252525',
+                                // borderLeft:'#f50057 4px solid',
+                                // borderRight:'#f50057 4px solid'
+                            
+                            }}
+                            variant='filled'
+                            label='Napisz wiadomość'
+                            multiline
+                            rowsMax='4'
+                            color='secondary'
+                            name='message'
+                            id='message'
+                            autoFocus
+                            value={message}
+                            onChange={(event) => handleChange(event)}
+                            placeholder='Bez Wyzywania!'
+                            onKeyDown={(event => handleEnter(event))}
+                            margin='normal'
+                            InputProps = {{
+                                style: {
+                                    fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif'",
+                                    color:'white',
+                                },
+                            }}
+                            InputLabelProps = {{
+                                style: {
+                                    color:'white',
+                                    fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+                                },
+                            }}
+                        />
+                </div>
+                        {/* <Button
                     style={{
                         height: '57px',
                         marginTop: '-2px',

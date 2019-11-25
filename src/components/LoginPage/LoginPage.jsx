@@ -69,18 +69,23 @@ const LoginPage = ({
             <div className='paragraph-container'>
                 <Paragraph text={'please log in'} />
             </div>
-            <div className='input-container'>
+            <div className='input-container-login-page'>
                 <div className='email-container'>
                     <TextField
                         style={{
                             width: '30%'
                         }}
                         variant='outlined'
-                        color='primary'
+                        color='secondary'
                         placeholder='email'
                         name='email'
                         type='email'
                         onChange={(event) => handleChange(event)}
+                        InputProps = {{
+                            style: {
+                                color:'white',
+                            }
+                        }}
                     />
                 </div>
                 <div className='password-container'>
@@ -89,11 +94,16 @@ const LoginPage = ({
                             width: '30%'
                         }}
                         variant='outlined'
-                        color='primary'
+                        color='secondary'
                         placeholder='password'
                         name='password'
                         type='password'
                         onChange={(event) => handleChange(event)}
+                        InputProps = {{
+                            style: {
+                                color:'white',
+                            }
+                        }}
                     />
                 </div>
             </div>

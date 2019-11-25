@@ -90,12 +90,10 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                         <TextField 
                             style={{
                                 width:'100%',
-                                overflow: 'hidden',
-                                padding:'4px',
                                 marginTop:'-12px',
                                 backgroundColor:'#252525',
-                                // borderLeft:'#f50057 4px solid',
-                                // borderRight:'#f50057 4px solid'
+                                borderLeft:'#f50057 4px solid',
+                                borderRight:'#f50057 4px solid'
                             
                             }}
                             variant='filled'

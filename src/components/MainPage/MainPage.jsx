@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { TextField, Button } from '@material-ui/core';
 import { saveNewMessageToStore, /*saveNewMessageToDatabse*/ } from '../../actions/actions';
-import Header from '../Header/Header';
+import Header from '../textVariant/Header';
 import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
 
@@ -78,7 +78,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
 
     return (
         <div className='main-page'>
-            <Header text={'Chat'} />
+            <Header text={'Have fun!'} />
             <div id='conversation'>
                 <MessagesList messages={messagesFromStore} socket={socket} />
                 <div className='message-container'>
@@ -86,25 +86,42 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                 </div>
             </div>
             <div className='input-container'>
-                <TextField
+                <TextField 
                     style={{
-                        width: '55%',
-                        backgroundColor: 'white',
-                        borderRadius: 'none',
+                        width: '30%',
                         overflow: 'hidden',
-                        marginTop: '-2px',
+                        padding:'4px',
+                        marginTop:'-11px',
+                        backgroundColor:'#252525',
+                    
                     }}
-                    variant='outlined'
-                    color='primary'
+                    variant='filled'
+                    label='Napisz wiadomość'
+                    multiline
+                    rowsMax='4'
+                    color='secondary'
                     name='message'
                     id='message'
                     autoFocus
                     value={message}
                     onChange={(event) => handleChange(event)}
-                    placeholder='Start typing...'
+                    placeholder='Bez Wyzywania!'
                     onKeyDown={(event => handleEnter(event))}
+                    margin='normal'
+                    InputProps = {{
+                        style: {
+                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif'",
+                            color:'white',
+                        },
+                    }}
+                    InputLabelProps = {{
+                        style: {
+                            color:'white',
+                            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+                        },
+                    }}
                 />
-                <Button
+                {/* <Button
                     style={{
                         height: '57px',
                         marginTop: '-2px',
@@ -118,7 +135,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
                     onClick={(event) => handleClick(event)}
                 >
                     Send message
-                </Button>
+                </Button> */}
             </div>
         </div>
     );

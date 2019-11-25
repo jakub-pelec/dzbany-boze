@@ -4,15 +4,18 @@
 
 .main-page {
     text-align: center;
+    /* background-color: rgba(0, 0, 0, 0.733); */
 }
+
 
 #conversation {
     display: inline-block;
-    width: 75%;
+    width: 30%;
     height: 500px;
-    background-color: #edf7ff;
-    border: 1px solid #8cccff;
-    border-radius: 10px;
+    background-color: #232323;
+    border-radius: 9px;
+    border-right: rgb(54, 54, 54) 4px solid;
+    border-left:rgb(54,54,54) 4px solid;
     overflow: auto;
 }
 
@@ -22,7 +25,6 @@
 }
 
 .input-container {
-    margin-top: -2px;
     width: 100%;
 }
 
@@ -31,3 +33,4 @@
     display: inline-block;
     width: 100%;
 }
+

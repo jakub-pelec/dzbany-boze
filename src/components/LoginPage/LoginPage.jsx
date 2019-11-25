@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../Header/Header';
+import Header from '../textVariant/Header';
+import Paragraph from '../textVariant/Paragraph'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
@@ -60,12 +61,16 @@ const LoginPage = ({
         }
     };
     return (
+    <div className='login-page-container'>
         <div className='login-page'>
             <div className='header-container'>
-                <Header text={'Login Page'} />
+                <Header text={'Welcome'} />
+            </div>
+            <div className='paragraph-container'>
+                <Paragraph text={'please log in'} />
             </div>
             <div className='input-container'>
-                <span className='email-container'>
+                <div className='email-container'>
                     <TextField
                         style={{
                             width: '30%'
@@ -77,8 +82,8 @@ const LoginPage = ({
                         type='email'
                         onChange={(event) => handleChange(event)}
                     />
-                </span>
-                <span className='password-container'>
+                </div>
+                <div className='password-container'>
                     <TextField
                         style={{
                             width: '30%'
@@ -90,28 +95,37 @@ const LoginPage = ({
                         type='password'
                         onChange={(event) => handleChange(event)}
                     />
-                </span>
+                </div>
             </div>
             <div className='button-container'>
-                <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => handleClick('login')}
-                >
-                    Login
-                </Button>
-                <Button
-                    variant='outlined'
-                    color='primary'
-                    onClick={() => handleClick('register')}
-                >
-                    Register
-                </Button>
+                <div className='justify-button-container'>
+                    <span className='button-sign-in' >
+                        <Button
+                            id='button'
+                            variant='contained'
+                            color='secondary'
+                            onClick={() => handleClick('login')}
+                        >
+                            ZALOGUJ
+                            </Button>
+                    </span>
+                    <span className='button-register'>
+                        <Button
+                            id="button"
+                            variant='contained'
+                            color='secondary'
+                            onClick={() => handleClick('register')}
+                        >
+                            ZAREJESTRUJ
+                            </Button>
+                    </span>
+                </div>
             </div>
             {errorMessage && <div className='error-message'>{errorMessage}</div>}
             {registerMessage && <div className='error-message'>Registered succesfully</div>}
             {emptyFields && <div className='error-message'>Register first!</div>}
         </div>
+    </div>
     )
 };
 

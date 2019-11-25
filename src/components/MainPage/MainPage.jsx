@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { saveNewMessageToStore, /*saveNewMessageToDatabse*/ } from '../../actions/actions';
-import Header from '../Header/Header';
+import Header from '../textVariant/Header';
 import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
 

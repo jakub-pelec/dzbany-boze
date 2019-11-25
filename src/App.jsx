@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import openSocket from 'socket.io-client';
 import MainPage from './components/MainPage/MainPage';
 
-function App({ socket }) {
+function App() {
+  const socket = openSocket('https://dzbany-server.herokuapp.com/');
   useEffect(() => {
     socket.on('connect', () => {
-      console.log('User Connected');
+      // eslint-disable-next-line no-console
+      console.log('User connected');
     });
   }, [socket]);
   return (

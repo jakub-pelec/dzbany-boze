@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Header from '../textVariant/Header';
 import Paragraph from '../textVariant/Paragraph'
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { authenticateUser, showInformationAboutRegister } from '../../actions/actions';
+import { authenticateUser, showInformationAboutRegister, createDocumentInDb } from '../../actions/actions';
 import firebaseAuth from '../../firebase/firebaseAuth';
 import './LoginPage.css';
 
 const LoginPage = ({
     authenticateUser: authenticateUserProps,
     errorMessage, showInformationAboutRegister: showInformationAboutRegisterProps,
-    registerMessage
+    registerMessage,
+    history
 }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -48,9 +50,11 @@ const LoginPage = ({
         if (password && email) {
             if (type === 'register') {
                 firebaseAuth(email, password);
+                createDocumentInDb(email);
                 showInformationAboutRegisterProps(true);
             } else {
                 authenticateUserProps(email, password);
+                history.push('/nickname');
             }
         } else {
             setEmptyFields(true);
@@ -130,7 +134,7 @@ const mapStateToProps = state => ({
     registerMessage: state.authReducer.userRegisteredMessage
 });
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     { authenticateUser, showInformationAboutRegister }
-)(LoginPage);
+)(LoginPage));

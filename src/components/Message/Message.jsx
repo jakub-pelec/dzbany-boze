@@ -7,7 +7,7 @@ const Message = ({ body, socket }) => {
         <div className='content-wrapper'>  
             <div className={`justify-content-wrapper ${styleX}`}>    
                 <div className={`message-wrapper ${styleX}`}>
-                    <div className={`message-id ${styleX}`}>{body.id}</div>
+                    <div className={`message-id ${styleX}`}>{body.nickname}</div>
                     <div className={`message ${styleX}`}>{body.message}</div>
                 </div>
             </div>  

@@ -1,22 +1,21 @@
 import React from 'react';
 import LoginPage from '../LoginPage/LoginPage';
+import { createBrowserHistory } from 'history';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import openSocket from 'socket.io-client';
 import PropTypes from 'prop-types';
 import App from '../../App';
+import NicknamePrompt from '../NicknamePrompt/NicknamePrompt';
 
-const socket = openSocket('https://dzbany-server.herokuapp.com/');
+const history = createBrowserHistory();
 
 const RouterComponent = ({ isAuthenticated }) => {
     return (
-        <Router>
+        <Router history={history}>
             <Switch>
-                {isAuthenticated ?
-                    <Route path='*' component={() => <App socket={socket} />} />
-                    :
-                    <Route path='*' component={LoginPage} />
-                }
+                <Route exact path='/' component={LoginPage} />
+                <Route path='/nickname' component={NicknamePrompt} />
+                <Route path='/chat' component={App} />
             </Switch>
         </Router>
     )

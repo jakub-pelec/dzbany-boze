@@ -1,4 +1,4 @@
-import { NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS, USER_REGISTERED } from './types';
+import { NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS, USER_REGISTERED, NEW_USER } from './types';
 
 /**
  * Saves new message object to store.
@@ -50,6 +50,13 @@ export const authenticateUserActionCreator = payload => {
 export const showProppperRegistrationInfoActionCreator = payload => {
     return {
         type: USER_REGISTERED,
+        payload
+    }
+}
+
+export const saveNicknameToStoreActionCreator = payload => {
+    return {
+        type: NEW_USER,
         payload
     }
 }

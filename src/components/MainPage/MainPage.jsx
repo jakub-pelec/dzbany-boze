@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import { TextField, Button } from '@material-ui/core';
 import { saveNewMessageToStore, /*saveNewMessageToDatabse*/ } from '../../actions/actions';
 import Header from '../Header/Header';
 import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
 
-const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps }) => {
+const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps, nickname }) => {
     const input = document.querySelector('#message');
     const [message, setMessage] = useState('');
     /**
@@ -61,7 +62,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
         event.preventDefault();
         if (isMessageNotEmpty()) {
             const { id } = socket;
-            const data = { message, id };
+            const data = { message, id, nickname };
             //saveNewMessageToDatabse(data);
             saveNewMessageProps(data);
             socket.emit('new-message-from-client', data)
@@ -124,7 +125,8 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
 }
 
 const mapStateToProps = state => ({
-    messagesFromStore: state.messageReducer.messages
+    messagesFromStore: state.messageReducer.messages,
+    nickname: state.userReducer.nickname
 })
 
 MainPage.propTypes = {

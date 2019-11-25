@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const MessagesList = ({ messages, socket }) => {
     return (
         messages.map((message, index) => (
-            <Message body={message} id={index} socket={socket} />
+            <Message body={message} key={index} socket={socket} />
         ))
     )
 }

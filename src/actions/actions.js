@@ -1,15 +1,15 @@
 import {
     saveNewMessageActionCreator,
     authenticateUserActionCreator,
-    showProppperRegistrationInfoActionCreator
+    showProppperRegistrationInfoActionCreator,
+    saveNicknameToStoreActionCreator
 } from './actionCreators';
 import firebase from 'firebase';
-import 'firebase/storage';
-import 'firebase/auth';
 import firebaseInit from '../firebase/firebaseInit';
 
 firebaseInit();
 const messagesPath = 'dzbany/messages/messages';
+const usersPath = 'dzbany/users/users';
 export const firestore = firebase.firestore();
 export const saveNewMessageToStore = data => async dispatch => {
     dispatch(saveNewMessageActionCreator(data))
@@ -40,3 +40,34 @@ export const authenticateUser = (email, password) => dispatch => {
 export const showInformationAboutRegister = payload => dispatch => {
     dispatch(showProppperRegistrationInfoActionCreator(payload));
 }
+
+export const createDocumentInDb = (email) => {
+    firebase
+        .firestore()
+        .collection(usersPath)
+        .doc(email)
+        .set({})
+        .catch((error) => {
+            throw new Error(`Error creating document: ${error}`)
+        })
+};
+
+export const changeNicknameInDb = (email, nickname) => {
+    firebase
+        .firestore()
+        .collection(usersPath)
+        .doc(email)
+        .set({
+            nickname
+        })
+        .then(() => {
+            console.log('nickname added succesfully')
+        })
+        .catch(error => {
+            throw new Error(`Error adding nickanme: ${error}`)
+        });
+};
+
+export const saveNicknameToStore = nickname => dispatch => {
+    dispatch(saveNicknameToStoreActionCreator(nickname));
+};

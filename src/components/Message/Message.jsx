@@ -5,7 +5,7 @@ const Message = ({ body, socket }) => {
     const styleX = body.id === socket.id ? 'own' : '';
     return (
         <div className='message-wrapper'>
-            <div className={`message ${styleX}`}>{`${body.id}: ${body.message}`}</div>
+            <div className={`message ${styleX}`}>{`${body.nickname}: ${body.message}`}</div>
         </div>
     )
 };

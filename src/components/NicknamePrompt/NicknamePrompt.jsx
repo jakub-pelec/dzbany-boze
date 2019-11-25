@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { saveNicknameToStore } from '../../actions/actions';
 import { changeNicknameInDb } from '../../actions/actions';
-import Header from '../Header/Header';
+import Header from '../textVariant/Header';
 
 const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps }) => {
     const [nickname, setNickname] = useState('');

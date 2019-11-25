@@ -7,9 +7,10 @@
     /* background-color: rgba(0, 0, 0, 0.733); */
 }
 
+
 #conversation {
     display: inline-block;
-    width: 55%;
+    width: 30%;
     height: 500px;
     background-color: #232323;
     border-radius: 9px;

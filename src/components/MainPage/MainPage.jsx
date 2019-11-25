@@ -87,7 +87,7 @@ const MainPage = ({ messagesFromStore, socket, saveNewMessageToStore: saveNewMes
             <div className='input-container'>
                 <TextField 
                     style={{
-                        width: '55%',
+                        width: '30%',
                         overflow: 'hidden',
                         padding:'4px',
                         marginTop:'-11px',

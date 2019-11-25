@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import { saveNicknameToStore } from '../../actions/actions';
-import { changeNicknameInDb } from '../../actions/actions';
+import { saveNicknameToStore, changeNicknameInDb } from '../../actions/actions';
+
 import Header from '../textVariant/Header';
 
 const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps }) => {
@@ -14,31 +14,39 @@ const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps
         setNickname(value);
     };
     const handleClick = () => {
-        const email = firebase.auth().currentUser.email;
+        const { email } = firebase.auth().currentUser;
         changeNicknameInDb(email, nickname);
         saveNicknameToStoreProps(nickname);
         history.push('/chat');
-    }
-    return(
-        <div>
-            <Header text='Nickname:' />
-            <TextField
-                variant='outlined'
-                color='primary'
-                type='text'
-                placeholder='Type your nickname'
-                autoFocus
-                onChange={(event) => handleChange(event)}
-            />
-            <Button
-                variant='outlined'
-                color='primary'
-                onClick={handleClick}
-            >
+    };
+
+return (
+  <div>
+    <Header text="Nickname:" />
+    <TextField
+      variant="outlined"
+      color="primary"
+      type="text"
+      placeholder="Type your nickname"
+      autoFocus
+      onChange={(event) => handleChange(event)}
+    />
+    <Button
+      variant="outlined"
+      color="primary"
+      onClick={handleClick}
+    >
                 Save nickname
-            </Button>
-        </div>
-    )
+    </Button>
+  </div>
+    );
+};
+
+NicknamePrompt.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func
+  }),
+  saveNicknameToStore: PropTypes.func
 };
 
 export default connect(

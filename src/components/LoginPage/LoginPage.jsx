@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import Header from '../textVariant/Header';
-import Paragraph from '../textVariant/Paragraph'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
+import Paragraph from '../textVariant/Paragraph';
+import Header from '../textVariant/Header';
 import { authenticateUser, showInformationAboutRegister, createDocumentInDb } from '../../actions/actions';
 import firebaseAuth from '../../firebase/firebaseAuth';
 import './LoginPage.css';
 
+// eslint-disable-next-line max-lines-per-function
 const LoginPage = ({
     authenticateUser: authenticateUserProps,
     errorMessage, showInformationAboutRegister: showInformationAboutRegisterProps,
@@ -20,7 +22,7 @@ const LoginPage = ({
 
     /**
      * Handle user input.
-     * @param {event} event - html5 event 
+     * @param {event} event - html5 event
      */
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -44,7 +46,7 @@ const LoginPage = ({
 
     /**
      * Handles login and registration.
-     * @param {string} type - determines if user wants to register or login. 
+     * @param {string} type - determines if user wants to register or login.
      */
     const handleClick = (type) => {
         if (password && email) {
@@ -60,91 +62,105 @@ const LoginPage = ({
             setEmptyFields(true);
         }
     };
+
     return (
-    <div className='login-page-container'>
-        <div className='login-page'>
-            <div className='header-container'>
-                <Header text={'Welcome'} />
-            </div>
-            <div className='paragraph-container'>
-                <Paragraph text={'please log in'} />
-            </div>
-            <div className='input-container-login-page'>
-                <div className='email-container'>
-                    <TextField
-                        style={{
+      <div className="login-page-container">
+        <div className="login-page">
+          <div className="header-container">
+            <Header text="Welcome" />
+          </div>
+          <div className="paragraph-container">
+            <Paragraph text="please log in" />
+          </div>
+          <div className="input-container-login-page">
+            <div className="email-container">
+              <TextField
+                style={{
                             width: '30%'
                         }}
-                        variant='outlined'
-                        color='secondary'
-                        placeholder='email'
-                        name='email'
-                        type='email'
-                        onChange={(event) => handleChange(event)}
-                        InputProps = {{
+                variant="outlined"
+                color="secondary"
+                placeholder="email"
+                name="email"
+                type="email"
+                onChange={(event) => handleChange(event)}
+                InputProps={{
                             style: {
-                                color:'white',
+                                color: 'white',
                             }
                         }}
-                    />
-                </div>
-                <div className='password-container'>
-                    <TextField
-                        style={{
+              />
+            </div>
+            <div className="password-container">
+              <TextField
+                style={{
                             width: '30%'
                         }}
-                        variant='outlined'
-                        color='secondary'
-                        placeholder='password'
-                        name='password'
-                        type='password'
-                        onChange={(event) => handleChange(event)}
-                        InputProps = {{
+                variant="outlined"
+                color="secondary"
+                placeholder="password"
+                name="password"
+                type="password"
+                onChange={(event) => handleChange(event)}
+                InputProps={{
                             style: {
-                                color:'white',
+                                color: 'white',
                             }
                         }}
-                    />
-                </div>
+              />
             </div>
-            <div className='button-container'>
-                <div className='justify-button-container'>
-                    <span className='button-sign-in' >
-                        <Button
-                            id='button'
-                            variant='contained'
-                            color='secondary'
-                            onClick={() => handleClick('login')}
-                        >
+          </div>
+          <div className="button-container">
+            <div className="justify-button-container">
+              <span className="button-sign-in">
+                <Button
+                  id="button"
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => handleClick('login')}
+                >
                             ZALOGUJ
-                            </Button>
-                    </span>
-                    <span className='button-register'>
-                        <Button
-                            id="button"
-                            variant='contained'
-                            color='secondary'
-                            onClick={() => handleClick('register')}
-                        >
+                </Button>
+              </span>
+              <span className="button-register">
+                <Button
+                  id="button"
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => handleClick('register')}
+                >
                             ZAREJESTRUJ
-                            </Button>
-                    </span>
-                </div>
+                </Button>
+              </span>
             </div>
-            {errorMessage && <div className='error-message'>{errorMessage}</div>}
-            {registerMessage && <div className='error-message'>Registered succesfully</div>}
-            {emptyFields && <div className='error-message'>Register first!</div>}
+          </div>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          {registerMessage && <div className="error-message">Registered succesfully</div>}
+          {emptyFields && <div className="error-message">Register first!</div>}
         </div>
-    </div>
-    )
+      </div>
+    );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     errorMessage: state.authReducer.errorMessage,
     registerMessage: state.authReducer.userRegisteredMessage
 });
 
+LoginPage.propTypes = {
+  authenticateUser: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+  showInformationAboutRegister: PropTypes.func,
+  registerMessage: PropTypes.func,
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
+};
+
 export default withRouter(connect(
     mapStateToProps,
-    { authenticateUser, showInformationAboutRegister }
+    {
+ authenticateUser,
+      showInformationAboutRegister
+}
 )(LoginPage));

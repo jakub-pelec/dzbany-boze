@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import openSocket from 'socket.io-client';
 import MainPage from './components/MainPage/MainPage';
 
-function App() {
+const App = () => {
   const socket = openSocket('https://dzbany-server.herokuapp.com/');
   useEffect(() => {
     socket.on('connect', () => {
@@ -10,9 +10,10 @@ function App() {
       console.log('User connected');
     });
   }, [socket]);
-  return (
-    <MainPage socket={socket} />
+
+return (
+  <MainPage socket={socket} />
   );
-}
+};
 
 export default App;

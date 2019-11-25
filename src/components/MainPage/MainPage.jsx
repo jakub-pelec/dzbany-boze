@@ -87,6 +87,7 @@ nickname
     return (
       <div className="main-page">
         <Header text="Have fun!" />
+        <div id='conversation-container'>
         <div id="conversation">
           <MessagesList messages={messagesFromStore} socket={socket} />
           <div className="message-container">
@@ -96,10 +97,9 @@ nickname
         <div className="input-container">
           <TextField
             style={{
-                        width: '30%',
+                        width: '100%',
                         overflow: 'hidden',
-                        padding: '4px',
-                        marginTop: '-11px',
+                        marginTop:'-6px',
                         backgroundColor: '#252525',
 
                     }}
@@ -130,7 +130,8 @@ nickname
                     }}
           />
         </div>
-      </div>
+        </div>
+    </div>
     );
 };
 

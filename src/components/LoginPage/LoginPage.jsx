@@ -76,7 +76,7 @@ const LoginPage = ({
             <div className="email-container">
               <TextField
                 style={{
-                            width: '30%'
+                            width: '100%'
                         }}
                 variant="outlined"
                 color="secondary"
@@ -94,7 +94,7 @@ const LoginPage = ({
             <div className="password-container">
               <TextField
                 style={{
-                            width: '30%'
+                            width: '100%'
                         }}
                 variant="outlined"
                 color="secondary"

@@ -82,7 +82,6 @@ const MainPage = ({
 
     return (
       <div className="main-page">
-        <Header text="Have fun!" />
         <div id='conversation-container'>
         <div id="conversation">
           <MessagesList messages={messagesFromStore} socket={socket} />
@@ -95,7 +94,6 @@ const MainPage = ({
             style={{
                         width: '100%',
                         overflow: 'hidden',
-                        marginTop:'-6px',
                         backgroundColor: '#252525',
 
                     }}

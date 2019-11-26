@@ -4,8 +4,7 @@ import { TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { saveNicknameToStore, changeNicknameInDb } from '../../actions/actions';
-
-import Header from '../textVariant/Header';
+import './NicknamePrompt.css'
 
 const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps }) => {
     const minNicknameLength = 6;
@@ -33,26 +32,39 @@ const NicknamePrompt = ({ history, saveNicknameToStore: saveNicknameToStoreProps
     };
 
 return (
-  <div>
-    <Header text="Nickname:" />
-    <TextField
-      variant="outlined"
-      color="primary"
-      type="text"
-      placeholder="Type your nickname"
-      autoFocus
-      onChange={(event) => handleChange(event)}
-      onKeyUp={handleKeyUp}
-    />
-    <Button
-      variant="outlined"
-      color="primary"
-      onClick={handleClick}
-    >
-                Save nickname
-    </Button>
-    { error && <div>Nickname must be between 6 and 15 characters long!</div>}
+  <div className='nicknameprompt-container'>
+    <div className='container'>
+      <div className='nicknameprompt-input'>
+      <TextField
+        variant="outlined"
+        color="secondary"
+        fullWidth='true'
+        type="text"
+        placeholder="Set your nickname"
+        autoFocus
+        onChange={(event) => handleChange(event)}
+        onKeyUp={handleKeyUp}
+        InputProps = {{
+          style: {
+            color:'white',
+          }
+        }}
+      />
+      </div>
+      <div className='nicknameprompt-button'>
+      <Button
+        style={{width:'100%',}}
+        variant="contained"
+        color="secondary"
+        onClick={handleClick}
+      >
+                  Save nickname
+      </Button>
+      </div>
+      { error && <div className='nicknameprompt-error'>Nickname must be between 6 and 15 characters long!</div>}
+    </div>
   </div>
+  
     );
 };
 

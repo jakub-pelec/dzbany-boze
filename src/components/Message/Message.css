@@ -56,6 +56,8 @@
 
 
 .message-id {
+    display:flex;
+    justify-content: flex-start;
     color:rgb(107, 93, 167);
     font-size:12px;
     padding:1px;
@@ -63,10 +65,26 @@
 }
 
 .message-wrapper.own {
-    justify-content: flex-end;
     margin-right:1%;
 }
 
 .message-id.own {
+    display: flex;
+    justify-content: flex-end;
     color:rgb(204, 58, 95);
 }
+
+
+@media only screen and (max-width:720px) {
+
+    .justify-content-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        margin: auto;
+        border-bottom:1px solid rgba(255, 255, 255, 0.027);
+        /* background-color: brown; */
+    }
+
+}
+
+

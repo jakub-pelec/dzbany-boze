@@ -1,0 +1,44 @@
+@media only screen and (max-width:720px) {
+    .nicknameprompt-container {
+        display: flex;
+        width: 96vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2vw;
+        
+    }
+    .container {
+        width: 100%;
+    
+    } 
+
+}
+
+@media only screen and (min-width:720px) {
+    .nicknameprompt-container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .container {
+        width: 50%;
+        display:block;
+    
+    }
+}
+
+
+.nicknameprompt-input {
+    width:100%;
+
+}
+
+.nicknameprompt-error {
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+}

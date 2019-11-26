@@ -11,36 +11,52 @@ body {
 }
 
 .login-page-container {
-    position: absolute;
+    /* height: 100vh; */
     width: 100vw;
-    height: 100vh;
-    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items:center;
     overflow: none;
     background-color: #232323;
     padding:0;
 }
 
-.login-page {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    margin-top: 10%;
-    color:white;
-    background-color: #232323;
-    display:block;
+@media only screen and (max-width:720px) {
+    .login-page {
+        width: 100vw;
+        height: 100vh;
+        text-align: center;
+        margin-top: 25vh;
+        color:white;
+        /* background-color: #232323; */
+        display:block;
+        
+    }
 }
 
+@media only screen and (min-width:720px) {
+    .login-page {
+        width:50vw;
+        height: 100vh;
+        text-align: center;
+        margin-top: 10%;
+        color:white;
+        /* background-color: #232323; */
+        display:block;
+            
+    
+    }
+    
+}
 
 .header-container {
-    display: block;
     width: 100%;
-    height:1%;
+    height:fit-content;
     font-size: 24px;
     margin-bottom: 5%;
-    margin-top: 10%;
+    margin-top: 0%;
 }
 .paragraph-container {
-    display:block;
     width:100%;
     height:10%;
     padding-top:0;

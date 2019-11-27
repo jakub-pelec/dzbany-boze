@@ -11,10 +11,10 @@ import RouterComponent from './components/RouterComponent/RouterComponent';
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <RouterComponent />
-  </Provider>,
-  document.getElementById('root'),
+    <Provider store={store}>
+        <RouterComponent />
+    </Provider>,
+    document.getElementById('root'),
 );
 
 serviceWorker.unregister();

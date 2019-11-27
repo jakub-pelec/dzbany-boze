@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { saveNewMessageToStore } from '../../actions/actions';
-import Header from '../textVariant/Header';
 import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
 
 const MainPage = ({
- messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps, nickname
+    messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps, nickname
 }) => {
     const input = document.querySelector('#message');
     const [message, setMessage] = useState('');
@@ -81,51 +80,50 @@ const MainPage = ({
     };
 
     return (
-      <div className="main-page">
-        <div id='conversation-container'>
-        <div id="conversation">
-          <MessagesList messages={messagesFromStore} socket={socket} />
-          <div className="message-container">
-            <div id="end-of-conversation" />
-          </div>
+        <div className="main-page">
+            <div id="conversation-container">
+                <div id="conversation">
+                    <MessagesList messages={messagesFromStore} socket={socket} />
+                    <div className="message-container">
+                        <div id="end-of-conversation" />
+                    </div>
+                </div>
+                <div className="input-container">
+                    <TextField
+                        style={{
+                            width: '100%',
+                            overflow: 'hidden',
+                            backgroundColor: '#252525'
+                        }}
+                        variant="filled"
+                        label="Napisz wiadomość"
+                        multiline
+                        rowsMax="4"
+                        color="secondary"
+                        name="message"
+                        id="message"
+                        autoFocus
+                        value={message}
+                        onChange={(event) => handleChange(event)}
+                        placeholder="Bez Wyzywania!"
+                        onKeyDown={((event) => handleEnter(event))}
+                        margin="normal"
+                        InputProps={{
+                            style: {
+                                fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
+                                color: 'white'
+                            }
+                        }}
+                        InputLabelProps={{
+                            style: {
+                                color: 'white',
+                                fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif'
+                            }
+                        }}
+                    />
+                </div>
+            </div>
         </div>
-        <div className="input-container">
-          <TextField
-            style={{
-                        width: '100%',
-                        overflow: 'hidden',
-                        backgroundColor: '#252525',
-
-                    }}
-            variant="filled"
-            label="Napisz wiadomość"
-            multiline
-            rowsMax="4"
-            color="secondary"
-            name="message"
-            id="message"
-            autoFocus
-            value={message}
-            onChange={(event) => handleChange(event)}
-            placeholder="Bez Wyzywania!"
-            onKeyDown={((event) => handleEnter(event))}
-            margin="normal"
-            InputProps={{
-                style: {
-                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
-                    color: 'white',
-                },
-            }}
-            InputLabelProps={{
-                style: {
-                    color: 'white',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
-                },
-            }}
-          />
-        </div>
-        </div>
-    </div>
     );
 };
 

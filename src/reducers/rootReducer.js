@@ -4,7 +4,7 @@ import userReducer from './userReducer';
 import authReducer from './authReducer';
 
 export default combineReducers({
-  messageReducer,
-  userReducer,
-  authReducer,
+    messageReducer,
+    userReducer,
+    authReducer
 });

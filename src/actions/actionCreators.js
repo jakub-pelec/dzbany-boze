@@ -1,5 +1,5 @@
 import {
-    NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS, USER_REGISTERED, NEW_USER
+    NEW_MESSAGE, CORRECT_CREDENTIALS, INCORRECT_CREDENTIALS, USER_REGISTERED, NEW_USER, SET_EMAIL
 } from './types';
 
 /**
@@ -56,3 +56,8 @@ export const saveNicknameToStoreActionCreator = (payload) => ({
     type: NEW_USER,
     payload
 });
+
+export const saveEmailToStoreActionCreator = (payload) => ({
+    type: SET_EMAIL,
+    payload
+})

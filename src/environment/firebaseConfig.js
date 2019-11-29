@@ -5,5 +5,5 @@ export default {
     projectId: 'dzbany-d76f4',
     storageBucket: 'dzbany-d76f4.appspot.com',
     messagingSenderId: '376391984639',
-    appId: '1:376391984639:web:ef22027b73885753fff3ca'
+    appId: '1:376391984639:web:ef22027b73885753fff3ca',
 };

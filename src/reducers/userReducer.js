@@ -1,7 +1,8 @@
-import { NEW_USER } from '../actions/types';
+import { NEW_USER, SET_EMAIL } from '../actions/types';
 
 const INITIAL_STATE = {
-    nickname: null
+    nickname: null,
+    email: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 nickname: action.payload
             };
+        case SET_EMAIL:
+            return {
+                ...state,
+                email: action.payload
+            }
         default:
             return state;
     }

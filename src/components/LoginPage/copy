@@ -1,0 +1,55 @@
+<TextField
+    style={{
+                width: '100%'
+            }}
+    variant="outlined"
+    color="secondary"
+    placeholder="email"
+    name="email"
+    type="email"
+    onChange={(event) => handleChange(event)}
+    InputProps={{
+                style: {
+                    color: 'white',
+                }
+            }}
+    />
+
+
+<TextField
+style={{
+            width: '100%'
+        }}
+variant="outlined"
+color="secondary"
+placeholder="password"
+name="password"
+type="password"
+onChange={(event) => handleChange(event)}
+InputProps={{
+            style: {
+                color: 'white',
+            }
+        }}
+/>
+
+<Button
+    id="button"
+    variant="contained"
+    color="secondary"
+    onClick={() => handleClick('login')}
+>
+            ZALOGUJ
+</Button>
+<Button
+    id="button"
+    variant="contained"
+    color="secondary"
+    onClick={() => handleClick('register')}
+>
+            ZAREJESTRUJ
+</Button>
+
+{errorMessage && <div className="error-message">{errorMessage}</div>}
+          {registerMessage && <div className="error-message">Registered succesfully</div>}
+          {emptyFields && <div className="error-message">Register first!</div>}

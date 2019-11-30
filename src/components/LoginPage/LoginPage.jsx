@@ -7,7 +7,10 @@ import Paragraph from '../textVariant/Paragraph';
 import Header from '../textVariant/Header';
 import { authenticateUser, showInformationAboutRegister, createDocumentInDb } from '../../actions/actions';
 import firebaseAuth from '../../firebase/firebaseAuth';
-import './LoginPage.css';
+import './login-page-style.css';
+import hello from '../../assets/Hello.svg';
+import loginPageWave from '../../assets/login-page-wave.svg';
+
 
 // eslint-disable-next-line max-lines-per-function
 const LoginPage = ({
@@ -64,20 +67,19 @@ const LoginPage = ({
     };
 
     return (
-      <div className="login-page-container">
-        <div className="login-page">
-          <div className="header-container">
-            <Header text="Welcome" />
-          </div>
-          <div className="paragraph-container">
-            <Paragraph text="please log in" />
-          </div>
-          <div className="input-container-login-page">
-            <div className="email-container">
+    <div className="login-page-container">
+        <div className="container">
+          <section>
+            <img className="logo" src={hello} alt="hello"/>
+            <p>please log in</p>
+            <ul>
+              <div class="input-container">
               <TextField
                 style={{
-                            width: '100%'
-                        }}
+                  marginBottom:'1em',
+                  width:'80%',
+                }}
+                // fullWidth="1"
                 variant="outlined"
                 color="secondary"
                 placeholder="email"
@@ -89,56 +91,42 @@ const LoginPage = ({
                                 color: 'white',
                             }
                         }}
-              />
-            </div>
-            <div className="password-container">
-              <TextField
-                style={{
-                            width: '100%'
-                        }}
-                variant="outlined"
-                color="secondary"
-                placeholder="password"
-                name="password"
-                type="password"
-                onChange={(event) => handleChange(event)}
-                InputProps={{
-                            style: {
-                                color: 'white',
-                            }
-                        }}
-              />
-            </div>
-          </div>
-          <div className="button-container">
-            <div className="justify-button-container">
-              <span className="button-sign-in">
-                <Button
-                  id="button"
-                  variant="contained"
+                />
+                <TextField
+                  style={{
+                    marginBottom:'1em',
+                    width:'80%',
+                  }}
+                  variant="outlined"
                   color="secondary"
-                  onClick={() => handleClick('login')}
-                >
-                            ZALOGUJ
-                </Button>
-              </span>
-              <span className="button-register">
-                <Button
-                  id="button"
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => handleClick('register')}
-                >
-                            ZAREJESTRUJ
-                </Button>
-              </span>
-            </div>
-          </div>
+                  placeholder="password"
+                  name="password"
+                  type="password"
+                  fullWidth="1"
+                  onChange={(event) => handleChange(event)}
+                  InputProps={{
+                              style: {
+                                  color: 'white',
+                              }
+                          }}
+                  />
+                      
+                      
+              </div>
+                <div class="sign-in-btn-container">
+                  <button onClick={() => handleClick('login')} class="sign-in-btn">SIGN IN</button>
+              
+                  <button onClick={()=> handleClick('register')} class="register-btn">register</button>
+                </div>
+              </ul>
+          </section>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           {registerMessage && <div className="error-message">Registered succesfully</div>}
           {emptyFields && <div className="error-message">Register first!</div>}
-        </div>
       </div>
+      <img class="login-page-wave"src={loginPageWave} alt="loginpagewave"/>
+      {/* <img src={require("../../assets/login-page-wave.svg")} alt="login-page-wave" class="login-page-wave"/>  */}
+    </div>
     );
 };
 

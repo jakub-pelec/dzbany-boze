@@ -67,66 +67,66 @@ const LoginPage = ({
     };
 
     return (
-    <div className="login-page-container">
-        <div className="container">
-          <section>
-            <img className="logo" src={hello} alt="hello"/>
-            <p>please log in</p>
-            <ul>
-              <div class="input-container">
-              <TextField
-                style={{
-                  marginBottom:'1em',
-                  width:'80%',
-                }}
-                // fullWidth="1"
-                variant="outlined"
-                color="secondary"
-                placeholder="email"
-                name="email"
-                type="email"
-                onChange={(event) => handleChange(event)}
-                InputProps={{
-                            style: {
-                                color: 'white',
-                            }
-                        }}
-                />
-                <TextField
-                  style={{
-                    marginBottom:'1em',
-                    width:'80%',
-                  }}
-                  variant="outlined"
-                  color="secondary"
-                  placeholder="password"
-                  name="password"
-                  type="password"
-                  fullWidth="1"
-                  onChange={(event) => handleChange(event)}
-                  InputProps={{
-                              style: {
-                                  color: 'white',
-                              }
-                          }}
-                  />
-                      
-                      
-              </div>
-                <div class="sign-in-btn-container">
-                  <button onClick={() => handleClick('login')} class="sign-in-btn">SIGN IN</button>
-              
-                  <button onClick={()=> handleClick('register')} class="register-btn">register</button>
-                </div>
-              </ul>
-          </section>
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
-          {registerMessage && <div className="error-message">Registered succesfully</div>}
-          {emptyFields && <div className="error-message">Register first!</div>}
-      </div>
-      <img class="login-page-wave"src={loginPageWave} alt="loginpagewave"/>
-      {/* <img src={require("../../assets/login-page-wave.svg")} alt="login-page-wave" class="login-page-wave"/>  */}
-    </div>
+        <div className="login-page-container">
+            <div className="container">
+                <section className='login-page-section'>
+                    <img className="logo" src={hello} alt="hello" />
+                    <p>please log in</p>
+                    <ul>
+                        <div class="input-container">
+                            <TextField
+                                style={{
+                                    marginBottom: '1em',
+                                    width: '80%',
+                                }}
+                                // fullWidth="1"
+                                variant="outlined"
+                                color="secondary"
+                                placeholder="email"
+                                name="email"
+                                type="email"
+                                onChange={(event) => handleChange(event)}
+                                InputProps={{
+                                    style: {
+                                        color: 'white',
+                                    }
+                                }}
+                            />
+                            <TextField
+                                style={{
+                                    marginBottom: '1em',
+                                    width: '80%',
+                                }}
+                                variant="outlined"
+                                color="secondary"
+                                placeholder="password"
+                                name="password"
+                                type="password"
+                                fullWidth="1"
+                                onChange={(event) => handleChange(event)}
+                                InputProps={{
+                                    style: {
+                                        color: 'white',
+                                    }
+                                }}
+                            />
+
+
+                        </div>
+                        <div class="sign-in-btn-container">
+                            <button onClick={() => handleClick('login')} className="sign-in-btn">SIGN IN</button>
+
+                            <button onClick={() => handleClick('register')} className="register-btn">register</button>
+                        </div>
+                    </ul>
+                </section>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
+                {registerMessage && <div className="error-message">Registered succesfully</div>}
+                {emptyFields && <div className="error-message">Register first!</div>}
+            </div>
+            <img class="login-page-wave" src={loginPageWave} alt="loginpagewave" />
+            {/* <img src={require("../../assets/login-page-wave.svg")} alt="login-page-wave" class="login-page-wave"/>  */}
+        </div>
     );
 };
 
@@ -136,19 +136,19 @@ const mapStateToProps = (state) => ({
 });
 
 LoginPage.propTypes = {
-  authenticateUser: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string,
-  showInformationAboutRegister: PropTypes.func,
-  registerMessage: PropTypes.func,
-  history: PropTypes.shape({
-    push: PropTypes.func
-  })
+    authenticateUser: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+    showInformationAboutRegister: PropTypes.func,
+    registerMessage: PropTypes.func,
+    history: PropTypes.shape({
+        push: PropTypes.func
+    })
 };
 
 export default withRouter(connect(
     mapStateToProps,
     {
- authenticateUser,
-      showInformationAboutRegister
-}
+        authenticateUser,
+        showInformationAboutRegister
+    }
 )(LoginPage));

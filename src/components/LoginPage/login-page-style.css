@@ -7,18 +7,18 @@ body {
 }
 .logo {
     margin: 0 auto;
-    width:70%;
+    width:250px;
 }
 
 .container {
     width:80%;
     height: 100%;
     text-align: center;
-    margin:25% auto;
+    margin:0 auto;
 }
 
-p {
-    margin-top:10%;
+.login-page-container p {
+    margin-top:2em;
     color:white;
     font-size:1.5em;
 }
@@ -50,11 +50,11 @@ input {
     /* margin-left: -10%; */
 }
 
-button {
+section button {
     display:block;
     border:none;
     margin: 0 auto;
-    width:80%;
+    width:64%;
     background:#f53053;
     height: 2em;
     color:white;
@@ -65,7 +65,7 @@ button {
 
 .register-btn {
     position: relative;
-    right:-100px;
+    right:-20%;
     background:inherit;
     text-align:right;
     width:fit-content;
@@ -79,8 +79,40 @@ button {
     width:100%;
     bottom:0;
     z-index: -1;
+    margin-top: 25%;
 }
 
 .error-message {
+    color:white;
+}
+
+
+
+@media only screen and (min-width:450px){
+    .login-page-section {
+        margin: 0 auto;
+        width:80%;
+    }
+    .logo {
+        position: relative;
+        margin: 0 auto;
+    }
+}
+@media only screen and (min-width:1000px){
+    .login-page-section {
+        margin: -10em auto;
+        width:60%;
+    }
+    .logo {
+        margin-bottom:0.7em;
+        width:500px;
+    }
+
+    .login-page-wave{
+        bottom:-70px;
+    }
+}
+
+.nicknameprompt-error {
     color:white;
 }

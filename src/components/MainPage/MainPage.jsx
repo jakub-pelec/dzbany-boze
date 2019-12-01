@@ -6,9 +6,10 @@ import { saveNewMessageToStore } from '../../actions/actions';
 import Header from '../textVariant/Header';
 import MessagesList from '../MessagesList/MessagesList';
 import './MainPage.css';
+import mainPageWave from '../../assets/main-page-svg.svg';
 
 const MainPage = ({
- messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps, nickname
+    messagesFromStore, socket, saveNewMessageToStore: saveNewMessageProps, nickname
 }) => {
     const input = document.querySelector('#message');
     const [message, setMessage] = useState('');
@@ -81,51 +82,56 @@ const MainPage = ({
     };
 
     return (
-      <div className="main-page">
-        <div id='conversation-container'>
-        <div id="conversation">
-          <MessagesList messages={messagesFromStore} socket={socket} />
-          <div className="message-container">
-            <div id="end-of-conversation" />
-          </div>
-        </div>
-        <div className="input-container">
-          <TextField
-            style={{
-                        width: '100%',
+        <div className="main-page">
+            <div id='conversation-container' className='conversation-container'>
+
+                <MessagesList messages={messagesFromStore} socket={socket} />
+                <div id="end-of-conversation"></div>
+
+            </div>
+            <div className='input-container'>
+                <TextField
+                    className='text-input'
+                    style={{
                         overflow: 'hidden',
-                        backgroundColor: '#252525',
+                        backgroundColor: '#343434',
+                        borderRadius: '10px',
 
                     }}
-            variant="filled"
-            label="Napisz wiadomość"
-            multiline
-            rowsMax="4"
-            color="secondary"
-            name="message"
-            id="message"
-            autoFocus
-            value={message}
-            onChange={(event) => handleChange(event)}
-            placeholder="Bez Wyzywania!"
-            onKeyDown={((event) => handleEnter(event))}
-            margin="normal"
-            InputProps={{
-                style: {
-                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
-                    color: 'white',
-                },
-            }}
-            InputLabelProps={{
-                style: {
-                    color: 'white',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
-                },
-            }}
-          />
-        </div>
-        </div>
-    </div>
+                    fullWidth="true"
+                    variant="filled"
+                    label="Aa..."
+                    multiline
+                    rowsMax="4"
+                    color="secondary"
+                    name="message"
+                    id="message"
+                    autoFocus
+                    value={message}
+                    onChange={(event) => handleChange(event)}
+                    placeholder=""
+                    onKeyDown={((event) => handleEnter(event))}
+                    margin="normal"
+                    InputProps={{
+                        style: {
+                            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif\'',
+                            color: 'white',
+                        },
+                    }}
+                    InputLabelProps={{
+                        style: {
+                            color: 'white',
+                            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif',
+                        },
+                    }}
+                />
+            </div>
+            <div>
+                <img src={mainPageWave} alt='mainpagewave' className='mainpagewave'></img>
+            </div>
+        </div >
+
+
     );
 };
 

@@ -1,0 +1,28 @@
+<TextField
+        variant="outlined"
+        color="secondary"
+        fullWidth='true'
+        type="text"
+        placeholder="Set your nickname"
+        autoFocus
+        onChange={(event) => handleChange(event)}
+        onKeyUp={handleKeyUp}
+        InputProps = {{
+          style: {
+            color:'white',
+          }
+        }}
+      />
+
+
+   <Button
+        style={{width:'100%',}}
+        variant="contained"
+        color="secondary"
+        onClick={handleClick}
+      >
+                  Save nickname
+      </Button>
+      </div>
+      { error && <div className='nicknameprompt-error'>Nickname must be between 6 and 15 characters long!</div>}
+   

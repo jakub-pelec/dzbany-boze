@@ -1,0 +1,14 @@
+.container {
+	width:100%;
+
+}
+.message-container{
+	overflow: auto;
+}
+
+.text-input {
+	margin: 0 auto;
+	position: relative;
+	bottom: 0;
+	width:70%;
+}

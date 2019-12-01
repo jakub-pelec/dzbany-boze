@@ -1,0 +1,59 @@
+body {
+    margin:0;
+}
+.logo{
+    margin-top:25%;
+}
+.container {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.input-container {
+    margin: 0 auto;
+    width:80%;
+}
+
+.nickp {
+    margin-top: 7em;
+    color:white;
+    font-size:1.5em;
+}
+button {
+    display:block;
+    border:none;
+    margin: 1em auto;
+    width:80%;
+    background:#f53053;
+    height: 2em;
+    color:white;
+    border-radius: 5px;
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+
+.nickname-page-wave {
+    position: absolute;
+    z-index: -1;
+    width:100%;
+    bottom:0;
+    left:0;
+}
+
+ul {
+    margin:0;
+    padding:0;
+}
+
+
+@media only screen and (min-width:1000px){
+    .nickname-page-wave {
+        position: absolute;
+        z-index: -1;
+        width:100%;
+        bottom:-200px;
+        left:0;
+    }
+    
+}

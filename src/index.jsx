@@ -8,13 +8,16 @@ import rootReducer from './reducers/rootReducer';
 import * as serviceWorker from './serviceWorker';
 import RouterComponent from './components/RouterComponent/RouterComponent';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+	rootReducer,
+	composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <RouterComponent />
-  </Provider>,
-  document.getElementById('root'),
+	<Provider store={store}>
+		<RouterComponent />
+	</Provider>,
+	document.getElementById('root')
 );
 
 serviceWorker.unregister();

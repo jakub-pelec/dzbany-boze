@@ -3,17 +3,15 @@ import openSocket from 'socket.io-client';
 import MainPage from './components/MainPage/MainPage';
 
 const App = () => {
-  const socket = openSocket('https://dzbany-server.herokuapp.com/');
-  useEffect(() => {
-    socket.on('connect', () => {
-      // eslint-disable-next-line no-console
-      console.log('User connected');
-    });
-  }, [socket]);
+	const socket = openSocket('https://dzbany-server.herokuapp.com/');
+	useEffect(() => {
+		socket.on('connect', () => {
+			// eslint-disable-next-line no-console
+			console.log('User connected');
+		});
+	}, [socket]);
 
-return (
-  <MainPage socket={socket} />
-  );
+	return <MainPage socket={socket} />;
 };
 
 export default App;

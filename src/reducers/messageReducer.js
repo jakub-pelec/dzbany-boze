@@ -1,17 +1,17 @@
 import { NEW_MESSAGE } from '../actions/types';
 
 const INITIAL_STATE = {
-  messages: [],
+    messages: []
 };
 
 export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+    switch (action.type) {
     case NEW_MESSAGE:
-      return {
-        ...state,
-        messages: [...state.messages, action.payload],
-      };
+        return {
+            ...state,
+            messages: [...state.messages, action.payload]
+        };
     default:
-      return state;
-  }
+        return state;
+    }
 };

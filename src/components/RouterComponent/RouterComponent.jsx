@@ -9,19 +9,16 @@ import NicknamePrompt from '../NicknamePrompt/NicknamePrompt';
 const history = createBrowserHistory();
 
 const RouterComponent = () => (
-  <Router history={history}>
-    <Switch>
-      <Route exact path="/" component={LoginPage} />
-      <Route path="/nickname" component={NicknamePrompt} />
-      <Route path="/chat" component={App} />
-    </Switch>
-  </Router>
+	<Router history={history}>
+		<Switch>
+			<Route exact path='/' component={LoginPage} />
+			<Route path='/nickname' component={NicknamePrompt} />
+			<Route path='/chat' component={App} />
+		</Switch>
+	</Router>
 );
-const mapStateToProps = (state) => ({
-    isAuthenticated: state.authReducer.isAuthenticated
+const mapStateToProps = state => ({
+	isAuthenticated: state.authReducer.isAuthenticated
 });
 
-export default connect(
-    mapStateToProps,
-    null
-)(RouterComponent);
+export default connect(mapStateToProps, null)(RouterComponent);

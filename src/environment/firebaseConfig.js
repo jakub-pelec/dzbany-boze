@@ -1,5 +1,5 @@
 export default {
-    apiKey: 'AIzaSyBlNClU90Ig-mA4pQVzvxLU7g1gl2rPm5E',
+    apiKey: '<API_KEY>',
     authDomain: 'dzbany-d76f4.firebaseapp.com',
     databaseURL: 'https://dzbany-d76f4.firebaseio.com',
     projectId: 'dzbany-d76f4',
